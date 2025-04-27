@@ -1,0 +1,27 @@
+@use '../base/variables' as *;
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    .form-label {
+      margin-bottom: $spacing-xs;
+
+      font-size: $spacing-md;
+      font-weight: $font-400;
+    }
+
+    .form-input {
+      width: 100%;
+      min-height: 34px;
+      margin-bottom: $spacing-xl;
+      padding: 3px 15px;
+      border-radius: 6px;
+      border: 1px solid $neutral-color-40;
+    }
+  }
+}

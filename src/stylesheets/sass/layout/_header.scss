@@ -1,0 +1,11 @@
+@use '../base' as *;
+
+.header {
+  padding: 20px 0;
+  .title {
+    font-size: $text-xl;
+    font-weight: $font-700;
+    color: $primary-color;
+    text-align: center;
+  }
+}
