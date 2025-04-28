@@ -1,16 +1,37 @@
 @use '../base' as *;
 
 .list {
-  padding-left: 16px;
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 
   text-transform: capitalize;
 
   .list-item {
+    width: 100%;
+
     .item-title {
-      font-size: $text-2xl;
-      font-weight: $font-700;
-      color: $primary-color;
+      display: flex;
+      align-items: center;
+      max-width: max-content;
+
+      font-size: $text-xs;
+      color: $neutral-color-40;
+      margin-bottom: 18px;
+    }
+
+    .gray-dot-icon {
+      width: 4px;
+      height: 4px;
+      margin-right: 2px;
+    }
+
+    .item-subtitle {
+      margin-right: 11px;
+      display: flex;
+      align-items: center;
+
+      font-size: $text-xs;
+      color: $black-color;
     }
   }
 }

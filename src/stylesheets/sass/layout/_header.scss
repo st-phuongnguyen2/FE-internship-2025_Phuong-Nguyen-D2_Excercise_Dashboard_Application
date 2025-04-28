@@ -1,11 +1,34 @@
-@use '../base' as *;
+@use '../base/variables' as *;
 
 .header {
-  padding: 20px 0;
+  font-weight: $font-600;
+  box-shadow: $shadow-color-02;
+
+  padding: $spacing-4xl 0px;
+
+  .section-content {
+    justify-content: space-between;
+  }
+
   .title {
     font-size: $text-xl;
-    font-weight: $font-700;
-    color: $primary-color;
+    font-weight: $font-600;
+    color: $orange-color;
     text-align: center;
+
+    .sub-title {
+      color: $black-color;
+    }
+  }
+
+  .section-date {
+    display: flex;
+    flex-direction: column;
+    font-weight: $font-500;
+
+    .date {
+      font-size: $text-sm;
+      color: $blue-color-40;
+    }
   }
 }
