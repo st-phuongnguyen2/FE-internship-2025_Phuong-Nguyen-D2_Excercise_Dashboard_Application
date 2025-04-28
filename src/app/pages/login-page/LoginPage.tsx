@@ -1,11 +1,7 @@
 import Main from './components/Main';
 
 const LoginPage = () => {
-  return (
-    <>
-      <Main />
-    </>
-  );
+  return <Main />;
 };
 
 export default LoginPage;

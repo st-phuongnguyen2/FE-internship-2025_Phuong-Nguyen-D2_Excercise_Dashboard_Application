@@ -1,0 +1,17 @@
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-group {
+  position: relative;
+
+  .tick-icon {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -1,0 +1,71 @@
+@use '../base/variables' as *;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  margin-right: 37px;
+
+  min-height: calc(100vh - 108px);
+  min-width: 330px;
+  background-color: $black-color;
+
+  padding: 35px 21px;
+
+  .section-user-info {
+    display: flex;
+    flex-direction: column;
+
+    color: $white-color;
+
+    margin-bottom: $spacing-5xl;
+  }
+
+  .list {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    .list-item {
+      font-weight: $font-500;
+    }
+
+    .list-item:last-child {
+      margin-top: auto;
+    }
+
+    .list-item:last-child .card {
+      margin-bottom: 0;
+    }
+
+    .icon {
+      margin-right: $spacing-md;
+    }
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    padding: $spacing-md;
+    border-radius: 14px;
+
+    color: $white-color;
+
+    margin-bottom: 30px;
+  }
+
+  .card:hover:not(.active-card) {
+    background-color: rgba($white-color, 0.4);
+  }
+
+  .active-card {
+    color: $orange-color;
+    background-color: $white-color;
+
+    .title {
+      color: $orange-color;
+    }
+  }
+}

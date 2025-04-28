@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { authReducer } from './auth/users-slice';
+import { loadingReducer } from './loading/loading-slice';
 import { usersReducer } from './users/users-slice';
 
 const usersPersistConfig = {
@@ -9,8 +11,16 @@ const usersPersistConfig = {
   storage: storage
 };
 
+const authPersistConfig = {
+  key: 'auth',
+  version: 1,
+  storage: storage
+};
+
 const combinedReducers = combineReducers({
-  users: persistReducer(usersPersistConfig, usersReducer)
+  users: persistReducer(usersPersistConfig, usersReducer),
+  auth: persistReducer(authPersistConfig, authReducer),
+  loading: loadingReducer
 });
 
 export const store = configureStore({
