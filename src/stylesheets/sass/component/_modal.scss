@@ -1,0 +1,67 @@
+@use '../base//variables' as *;
+
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  min-width: 924px;
+  max-height: 708px;
+  overflow-y: scroll;
+
+  border-radius: 5px;
+
+  padding: 48px 62px;
+
+  background-color: $beige-color-40;
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: $spacing-6xl;
+
+    font-weight: $font-600;
+
+    .action {
+      font-size: $text-sm;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .form {
+    background-color: $white-color;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1px solid $neutral-color-40;
+
+    .form-group {
+      width: 50%;
+    }
+
+    .form-group:has(.textarea-input) {
+      width: 100%;
+    }
+
+    .textarea-input {
+      font-family: $font-primary;
+      max-width: 100%;
+      min-height: 100px;
+      max-height: 205px;
+      resize: vertical;
+    }
+
+    .status-radio {
+      color: $neutral-color-40;
+    }
+
+    .btn[type='submit'] {
+      max-width: max-content;
+      padding: 10px 34px;
+    }
+  }
+}

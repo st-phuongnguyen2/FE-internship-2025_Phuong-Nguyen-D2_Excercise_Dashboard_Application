@@ -1,0 +1,19 @@
+@use '../base/variables' as *;
+
+.loading-container {
+  position: absolute;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba($neutral-color-80, 0.4);
+
+  width: 100%;
+  min-height: 100vh;
+
+  .icon {
+    color: $orange-color;
+  }
+}
