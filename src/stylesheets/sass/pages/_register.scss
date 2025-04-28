@@ -1,0 +1,9 @@
+@use '../base/variables' as *;
+
+.register-page {
+  .section-content {
+    flex-direction: column;
+
+    padding: 112px 0;
+  }
+}

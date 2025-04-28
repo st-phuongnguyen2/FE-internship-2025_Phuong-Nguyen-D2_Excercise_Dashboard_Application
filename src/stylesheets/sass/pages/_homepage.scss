@@ -1,0 +1,208 @@
+@use '../base/variables' as *;
+
+.home-page {
+  .not-started-status {
+    color: $red-color-40;
+  }
+
+  .inprogress-status {
+    color: $blue-color-100;
+  }
+
+  .completed-status {
+    color: $green-color-60;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .main-content {
+    width: 100%;
+    padding-top: $spacing-md;
+  }
+
+  .content-header {
+    column-gap: 32px;
+    display: flex;
+    align-items: center;
+    font-size: $text-3xl;
+    font-weight: $font-500;
+    line-height: 34px;
+    margin-bottom: 80px;
+
+    .icon {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  .content-body {
+    display: flex;
+  }
+
+  .section-todo,
+  .section-statistic,
+  .todo-detail,
+  .completed-tasks {
+    flex-basis: 50%;
+    flex-grow: 1;
+
+    padding: 20px 24px;
+    border-radius: 14px;
+  }
+
+  .section-todo {
+    box-shadow: $shadow-color-02;
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .section-statistic {
+    padding: 0px 24px 20px;
+
+    .task-status-statistic,
+    .completed-tasks {
+      box-shadow: $shadow-color-02;
+      border-radius: 14px;
+      padding: 20px 24px;
+    }
+
+    .task-status-statistic {
+      margin-bottom: 17px;
+    }
+  }
+
+  .todo-action {
+    font-size: $text-xs;
+    color: $neutral-color-40;
+    cursor: pointer;
+
+    .icon {
+      width: 11px;
+      height: 11px;
+
+      margin-right: 5px;
+    }
+  }
+
+  .todo-header,
+  .task-status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    .title {
+      display: flex;
+      color: $orange-color;
+    }
+  }
+
+  .task-status-header {
+    .icon {
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  .progress-chart {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .list {
+    margin-bottom: $spacing-xs;
+
+    .list-item:not(.list-item:has(.item-title)) {
+      margin-bottom: 10px;
+    }
+
+    .card {
+      padding: 13px 15px;
+    }
+
+    .card:hover,
+    .selected-task {
+      background-color: $gray-color;
+      box-shadow: $shadow-color-01;
+    }
+  }
+
+  .filter-form {
+    flex-direction: row;
+
+    .form-group {
+      margin-right: $spacing-md;
+      min-width: 150px;
+    }
+
+    .form-label {
+      font-size: $text-sm;
+      font-weight: $font-500;
+    }
+  }
+
+  .todo-detail {
+    .title {
+      color: $black-color;
+      font-weight: 600;
+    }
+
+    .todo-header {
+      margin-bottom: 28px;
+    }
+
+    .todo-status {
+      display: flex;
+      flex-direction: column;
+
+      margin-bottom: 30px;
+    }
+
+    .card-key {
+      font-size: $text-xs;
+      margin-bottom: 9px;
+    }
+
+    .card-key:last-child {
+      color: $neutral-color-40;
+    }
+
+    .todo-info {
+      display: flex;
+      flex-direction: column;
+
+      .card-key {
+        font-size: $text-md;
+        font-weight: $font-700;
+        line-height: 180%;
+        color: $black-color;
+      }
+
+      .card-value {
+        color: $neutral-color-40;
+      }
+    }
+
+    .todo-action {
+      justify-self: end;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+.active-task {
+}

@@ -1,0 +1,9 @@
+@use '../base/variables' as *;
+
+.login-page {
+  .section-content {
+    flex-direction: column;
+
+    padding: 192px 0;
+  }
+}
