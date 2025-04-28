@@ -1,8 +1,9 @@
 # React + TypeScript + Vite
-Feature link: https://docs.google.com/document/d/1wlwbqqR_lT4k1J2ZCZz3vHucokOiHCXc0M-6kU74Sd0/edit?usp=sharing 
 
-Name: Phượng Nguyễn Đ 
-Age: 24 
+Feature link: https://docs.google.com/document/d/1wlwbqqR_lT4k1J2ZCZz3vHucokOiHCXc0M-6kU74Sd0/edit?usp=sharing
+
+Name: Phượng Nguyễn Đ[2]
+Age: 24
 Phone: 0344018512
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -24,37 +25,36 @@ export default tseslint.config({
     // Alternatively, use this for stricter rules
     ...tseslint.configs.strictTypeChecked,
     // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
+    ...tseslint.configs.stylisticTypeChecked
   ],
   languageOptions: {
     // other options...
     parserOptions: {
       project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+      tsconfigRootDir: import.meta.dirname
+    }
+  }
+});
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from 'eslint-plugin-react-x';
+import reactDom from 'eslint-plugin-react-dom';
 
 export default tseslint.config({
   plugins: {
     // Add the react-x and react-dom plugins
     'react-x': reactX,
-    'react-dom': reactDom,
+    'react-dom': reactDom
   },
   rules: {
     // other rules...
     // Enable its recommended typescript rules
     ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+    ...reactDom.configs.recommended.rules
+  }
+});
 ```
-
