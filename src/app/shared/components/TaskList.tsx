@@ -8,15 +8,29 @@ import EllipsisTooltip from './EllipsisTooltip';
 
 interface ITaskListProps {
   taskList: Task[];
+  onTaskClick?: (task: Task) => void;
+  selectedTaskId?: string;
 }
 
-const TaskList = ({ taskList }: ITaskListProps) => {
+const TaskList = ({
+  taskList,
+  onTaskClick,
+  selectedTaskId
+}: ITaskListProps) => {
   return (
     <ul className="list">
       {taskList.map((task: Task) => {
         return (
-          <li className="list-item">
-            <div className="card">
+          <li
+            className="list-item"
+            onClick={() => onTaskClick?.(task)}
+            id={task.id}
+          >
+            <div
+              className={`card ${
+                selectedTaskId === task.id ? 'selected-task' : ''
+              }`}
+            >
               <img
                 src={renderStatusBorderIcon(task.status)}
                 alt="icon"

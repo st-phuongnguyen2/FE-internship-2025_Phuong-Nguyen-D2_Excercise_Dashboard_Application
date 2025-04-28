@@ -3,7 +3,6 @@ import grayDotIcon from '../../../../assets/icons/gray-dot-icon.svg';
 import handWaveIcon from '../../../../assets/icons/hand-wave-icon.svg';
 import notebookIcon from '../../../../assets/icons/notebook-icon.svg';
 import notebookTickIcon from '../../../../assets/icons/notebook-tick-icon.svg';
-
 import plusIcon from '../../../../assets/icons/plus-icon.svg';
 import { setTaskForm } from '../../../redux-store/task-modal/task-modal-slice';
 import CreateUpdateTaskModal from '../../../shared/components/CreateUpdateTaskModal';
@@ -24,6 +23,7 @@ const Dashboard = () => {
   const tasksOfCurrentUser = tasks.filter(
     (task) => task.userEmail === currentUser?.email
   );
+
   const dispatch = useAppDispatch();
 
   function groupByDate(items: Task[]) {
@@ -66,7 +66,7 @@ const Dashboard = () => {
 
     return groups.map((group: any) => {
       return (
-        <ul className="list">
+        <ul className="list" id={group[0].id}>
           <li className="list-item">
             <h2 className="item-title">
               <span className="item-subtitle">

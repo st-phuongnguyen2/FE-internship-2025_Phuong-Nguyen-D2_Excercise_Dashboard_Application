@@ -41,6 +41,10 @@
     .icon {
       margin-right: $spacing-md;
     }
+
+    .card:hover:not(.active-card) {
+      background-color: rgba($white-color, 0.4);
+    }
   }
 
   .card {
@@ -54,10 +58,6 @@
     color: $white-color;
 
     margin-bottom: 30px;
-  }
-
-  .card:hover:not(.active-card) {
-    background-color: rgba($white-color, 0.4);
   }
 
   .active-card {

@@ -3,6 +3,7 @@ import Sidebar from '../../../shared/components/Sidebar';
 import { SidebarTabs } from '../../../utils/constants/sidebar-tabs';
 import Dashboard from './Dashboard';
 import MyTask from './MyTasks';
+import CreateUpdateTaskModal from '../../../shared/components/CreateUpdateTaskModal';
 
 const Main = () => {
   const [currentTab, setCurrentTab] = useState(SidebarTabs.DASHBOARD);
@@ -28,6 +29,7 @@ const Main = () => {
       <section className="section section-app">
         <div className="container">
           <div className="section-content">
+            <CreateUpdateTaskModal />
             <Sidebar currentTab={currentTab} onChangeTab={onChangeTab} />
             <div className="main-content">{renderCurrentTab()}</div>
           </div>

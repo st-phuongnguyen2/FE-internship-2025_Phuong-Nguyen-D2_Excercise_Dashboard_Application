@@ -1,6 +1,18 @@
 @use '../base/variables' as *;
 
 .home-page {
+  .not-started-status {
+    color: $red-color-40;
+  }
+
+  .inprogress-status {
+    color: $blue-color-100;
+  }
+
+  .completed-status {
+    color: $green-color-60;
+  }
+
   .container {
     max-width: 100%;
     padding: 0;
@@ -32,6 +44,7 @@
 
   .section-todo,
   .section-statistic,
+  .todo-detail,
   .completed-tasks {
     flex-basis: 50%;
     flex-grow: 1;
@@ -42,6 +55,11 @@
 
   .section-todo {
     box-shadow: $shadow-color-02;
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .section-statistic {
@@ -60,6 +78,8 @@
   }
 
   .todo-action {
+    font-size: $text-xs;
+    color: $neutral-color-40;
     cursor: pointer;
 
     .icon {
@@ -109,5 +129,80 @@
     .card {
       padding: 13px 15px;
     }
+
+    .card:hover,
+    .selected-task {
+      background-color: $gray-color;
+      box-shadow: $shadow-color-01;
+    }
   }
+
+  .filter-form {
+    flex-direction: row;
+
+    .form-group {
+      margin-right: $spacing-md;
+      min-width: 150px;
+    }
+
+    .form-label {
+      font-size: $text-sm;
+      font-weight: $font-500;
+    }
+  }
+
+  .todo-detail {
+    .title {
+      color: $black-color;
+      font-weight: 600;
+    }
+
+    .todo-header {
+      margin-bottom: 28px;
+    }
+
+    .todo-status {
+      display: flex;
+      flex-direction: column;
+
+      margin-bottom: 30px;
+    }
+
+    .card-key {
+      font-size: $text-xs;
+      margin-bottom: 9px;
+    }
+
+    .card-key:last-child {
+      color: $neutral-color-40;
+    }
+
+    .todo-info {
+      display: flex;
+      flex-direction: column;
+
+      .card-key {
+        font-size: $text-md;
+        font-weight: $font-700;
+        line-height: 180%;
+        color: $black-color;
+      }
+
+      .card-value {
+        color: $neutral-color-40;
+      }
+    }
+
+    .todo-action {
+      justify-self: end;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+.active-task {
 }
