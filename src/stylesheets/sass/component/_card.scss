@@ -1,0 +1,71 @@
+@use '../base/variables' as *;
+
+.card {
+  display: flex;
+
+  border: 1px solid $neutral-color-40;
+  border-radius: 10px;
+
+  padding-left: 15px;
+
+  .card-icon {
+    padding: 0px;
+    margin-right: 15px;
+    align-self: self-start;
+  }
+
+  .card-body {
+    flex-grow: 1;
+
+    .card-title {
+      font-weight: $font-600;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-size: $text-sm;
+      font-weight: $font-400;
+
+      color: $neutral-color-70;
+      margin-bottom: 29px;
+    }
+
+    .card-status {
+      display: flex;
+      justify-content: space-between;
+
+      font-size: $text-xxs;
+      font-weight: $font-400;
+
+      .card-key:last-child {
+        color: $neutral-color-40;
+      }
+    }
+  }
+}
+
+.card,
+.progress-chart {
+  .not-started-status {
+    color: $red-color-40;
+  }
+
+  .inprogress-status {
+    color: $blue-color-100;
+  }
+
+  .completed-status {
+    color: $green-color-60;
+  }
+}
+
+.progress-chart {
+  .progress-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    row-gap: $spacing-md;
+  }
+}

@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { setCurrentUser } from '../../../redux-store/users/users-slice';
 import FormInput from '../../../shared/components/form/FormInput';
 import {
   useAppDispatch,
@@ -14,6 +13,7 @@ import {
   userLoginFormSchema
 } from '../../../shared/schema-validations/login-form';
 import { AppRoutes } from '../../../utils/constants/app-routes';
+import { login } from '../../../redux-store/auth/users-slice';
 
 const Main = () => {
   const {
@@ -23,6 +23,7 @@ const Main = () => {
   } = useForm({
     resolver: yupResolver(userLoginFormSchema)
   });
+
   const users = useAppSelector((state) => state.users.users);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Main = () => {
           foundUser.password
         );
 
-        dispatch(setCurrentUser(currentUser));
+        dispatch(login(currentUser));
         toast.success('Logged in successfully!');
         navigate(AppRoutes.HOME);
       }
@@ -56,10 +57,7 @@ const Main = () => {
         <div className="container">
           <div className="section-content">
             <h2 className="title">Welcome Back!</h2>
-            <form
-              className="auth-form login-form"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className="form login-form" onSubmit={handleSubmit(onSubmit)}>
               <FormInput
                 label="Username:"
                 formRegister={register('email')}
@@ -69,6 +67,9 @@ const Main = () => {
                 label="Password:"
                 formRegister={register('password')}
                 message={errors.password?.message}
+                inputProps={{
+                  type: 'password'
+                }}
               />
               <button
                 // disabled={Object.keys(errors).length > 0}

@@ -62,10 +62,7 @@ const Main = () => {
         <div className="container">
           <div className="section-content">
             <h2 className="title">Register!</h2>
-            <form
-              className="auth-form login-form"
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form className="form login-form" onSubmit={handleSubmit(onSubmit)}>
               <FormInput
                 label="Full Name:"
                 formRegister={register('fullName')}
@@ -80,11 +77,17 @@ const Main = () => {
                 label="Password:"
                 formRegister={register('password')}
                 message={errors.password?.message}
+                inputProps={{
+                  type: 'password'
+                }}
               />
               <FormInput
                 label="Confirm Password:"
                 formRegister={register('confirmPassword')}
                 message={errors.confirmPassword?.message}
+                inputProps={{
+                  type: 'password'
+                }}
               />
               <button
                 // disabled={Object.keys(errors).length > 0}

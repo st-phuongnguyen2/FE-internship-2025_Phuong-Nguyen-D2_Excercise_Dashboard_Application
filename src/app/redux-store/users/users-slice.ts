@@ -3,12 +3,10 @@ import { User } from '../../shared/models/User';
 
 interface IUsersState {
   users: User[];
-  currentUser?: User;
 }
 
 const initialState = {
-  users: [],
-  currentUser: undefined
+  users: []
 } as IUsersState;
 
 export const usersSlice = createSlice({
@@ -17,13 +15,10 @@ export const usersSlice = createSlice({
   reducers: {
     addUser: (state, { payload }: PayloadAction<User>) => {
       state.users.push(payload);
-    },
-    setCurrentUser: (state, { payload }: PayloadAction<User>) => {
-      state.currentUser = payload;
     }
   }
 });
 
-export const { addUser, setCurrentUser } = usersSlice.actions;
+export const { addUser } = usersSlice.actions;
 
 export const usersReducer = usersSlice.reducer;
