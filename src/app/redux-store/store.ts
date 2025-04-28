@@ -4,6 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/users-slice';
 import { loadingReducer } from './loading/loading-slice';
 import { usersReducer } from './users/users-slice';
+import { tasksReducer } from './tasks/tasks-slice';
+import { createUpdateTaskReducer } from './task-modal/task-modal-slice';
 
 const usersPersistConfig = {
   key: 'users',
@@ -17,9 +19,17 @@ const authPersistConfig = {
   storage: storage
 };
 
+const tasksPersistConfig = {
+  key: 'tasks',
+  version: 1,
+  storage: storage
+};
+
 const combinedReducers = combineReducers({
   users: persistReducer(usersPersistConfig, usersReducer),
   auth: persistReducer(authPersistConfig, authReducer),
+  tasks: persistReducer(tasksPersistConfig, tasksReducer),
+  taskForm: createUpdateTaskReducer,
   loading: loadingReducer
 });
 
