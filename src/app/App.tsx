@@ -1,10 +1,9 @@
-import { RouterProvider } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import '../stylesheets/sass/style.scss';
-import { router } from './router';
-import LoadingLayer from './shared/components/LoadingLayer';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ToastContainer } from 'react-toastify';
+import '../stylesheets/sass/style.scss';
+import LoadingLayer from './shared/components/LoadingLayer';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
           pauseOnHover
           theme="light"
         />
-        <RouterProvider router={router} />
+        <Outlet />
       </LocalizationProvider>
     </>
   );
