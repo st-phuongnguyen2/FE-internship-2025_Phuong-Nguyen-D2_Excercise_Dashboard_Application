@@ -1,0 +1,62 @@
+@use '../base/variables' as *;
+
+.todo-detail {
+  flex-basis: 50%;
+  flex-grow: 1;
+
+  padding: 20px 24px;
+  border-radius: 14px;
+
+  .title {
+    color: $black-color;
+    font-weight: 600;
+  }
+
+  .todo-header {
+    margin-bottom: 28px;
+  }
+
+  .todo-status {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 30px;
+  }
+
+  .card-key {
+    font-size: $text-xs;
+    margin-bottom: 9px;
+  }
+
+  .card-key:last-child {
+    color: $neutral-color-40;
+  }
+
+  .todo-info {
+    display: flex;
+    flex-direction: column;
+
+    .card-key {
+      font-size: $text-md;
+      font-weight: $font-700;
+      line-height: 180%;
+      color: $black-color;
+    }
+
+    .card-value {
+      color: $neutral-color-40;
+    }
+  }
+
+  .todo-action {
+    justify-self: end;
+
+    .icon {
+      &.delete-icon,
+      &.edit-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}

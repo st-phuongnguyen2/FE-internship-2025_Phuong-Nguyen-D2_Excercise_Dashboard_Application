@@ -1,22 +1,24 @@
 import dayjs from 'dayjs';
+import { JSX } from 'react';
+import deleteIcon from '../../../assets/icons/delete-icon.svg';
+import editIcon from '../../../assets/icons/edit-icon.svg';
 import { renderStatusName } from '../../utils/render-task';
 import { Task } from '../models/Task';
-import editIcon from '../../../assets/icons/edit-icon.svg';
-import deleteIcon from '../../../assets/icons/delete-icon.svg';
 
 interface ITaskDetail {
   task?: Task;
   onEdit?: (task: Task) => void;
   onDelete?: (task: Task) => void;
+  detailHeader?: string | JSX.Element;
 }
 
-const TaskDetail = ({ task, onEdit, onDelete }: ITaskDetail) => {
+const TaskDetail = ({ task, onEdit, onDelete, detailHeader }: ITaskDetail) => {
   return (
     <div className="todo-detail">
       {task ? (
         <>
           <div className="todo-header">
-            <h2 className="title">Submit Documents</h2>
+            <h2 className="title">{detailHeader}</h2>
           </div>
           <div className="todo-status">
             <span className="card-key">
@@ -41,13 +43,13 @@ const TaskDetail = ({ task, onEdit, onDelete }: ITaskDetail) => {
             <img
               src={deleteIcon}
               alt="delete-icon"
-              className="icon"
+              className="icon delete-icon"
               onClick={() => onDelete?.(task)}
             />
             <img
               src={editIcon}
               alt="edit-icon"
-              className="icon"
+              className="icon edit-icon"
               onClick={() => onEdit?.(task)}
             />
           </div>

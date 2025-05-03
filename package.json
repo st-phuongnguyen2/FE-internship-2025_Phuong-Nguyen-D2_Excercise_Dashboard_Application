@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
     "@hookform/resolvers": "^5.0.1",
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
@@ -19,7 +17,7 @@
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.8.4",
     "dayjs": "^1.11.13",
-    "immer": "^10.1.1",
+    "path": "^0.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
@@ -27,11 +25,11 @@
     "react-router-dom": "^7.5.2",
     "react-toastify": "^11.0.5",
     "redux-persist": "^6.0.0",
-    "uuid": "^11.1.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
@@ -42,6 +40,8 @@
     "sass-embedded": "^1.87.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
-    "vite": "^6.3.1"
+    "vite": "^6.3.1",
+    "vite-plugin-html": "^3.2.2",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }
