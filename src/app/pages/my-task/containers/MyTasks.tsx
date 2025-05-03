@@ -12,16 +12,16 @@ import TaskDetail from '../../../shared/components/TaskDetail';
 import TaskList from '../../../shared/components/TaskList';
 import { useAppDispatch } from '../../../shared/hooks/redux-hook';
 import { Task } from '../../../shared/models/Task';
-import { ITEMS_PER_PAGE } from '../../../utils/constants/pagination';
+import { ITEMS_PER_PAGE } from '@src/app/core/constants/pagination';
 import {
   SORT_ORDER_OPTIONS,
   SortOrder
-} from '../../../utils/constants/sort-order';
-import { TaskFormTitle } from '../../../utils/constants/task-form-title';
+} from '@src/app/core/constants/sort-order';
 import {
   TASK_STATUS_OPTIONS,
   TaskStatus
-} from '../../../utils/constants/task-status';
+} from '@src/app/core/constants/task-status';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 const MyTask = () => {
   const dispatch = useAppDispatch();

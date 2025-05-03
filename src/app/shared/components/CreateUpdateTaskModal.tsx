@@ -6,9 +6,7 @@ import dayjs from 'dayjs';
 import { useContext } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { TaskFormTitle } from '../../utils/constants/task-form-title';
-import { TaskStatus } from '../../utils/constants/task-status';
-import { renderStatusDot } from '../../utils/render-task';
+import { renderStatusDot } from '../../core/utils/render-task';
 import { AuthContext } from '../contexts/auth.context';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hook';
 import { Task } from '../models/Task';
@@ -18,6 +16,8 @@ import {
 } from '../schema-validations/task-form';
 import { taskService } from '../services/tasks.service';
 import FormInput from './form/FormInput';
+import { TaskStatus } from '@src/app/core/constants/task-status';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 const TASK_STATUS_RADIO = [
   {

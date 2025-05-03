@@ -1,5 +1,5 @@
+import { TaskStatus } from '@src/app/core/constants/task-status';
 import * as yup from 'yup';
-import { TaskStatus } from '../../utils/constants/task-status';
 
 export interface ITaskFormFields {
   title: string;

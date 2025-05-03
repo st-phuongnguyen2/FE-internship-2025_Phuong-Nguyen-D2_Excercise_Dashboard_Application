@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import {
   renderStatusBorderIcon,
   renderStatusName
-} from '../../utils/render-task';
+} from '../../core/utils/render-task';
 import { Task } from '../models/Task';
 import EllipsisTooltip from './EllipsisTooltip';
 
