@@ -8,4 +8,3 @@ export interface PageRoute {
   children?: PageRoute[];
   loader?: () => Promise<unknown>;
 }
-

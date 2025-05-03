@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import '../stylesheets/sass/style.scss';
 import LoadingLayer from './shared/components/LoadingLayer';
 import { Outlet } from 'react-router-dom';
+import { AuthProvider } from './shared/contexts/auth.context';
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
           newestOnTop={false}
           closeOnClick
           pauseOnFocusLoss
-          pauseOnHover
+          pauseOnHover /// cos ba o dayl dung co lam cai kieu do
           theme="light"
         />
-        <Outlet />
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
       </LocalizationProvider>
     </>
   );

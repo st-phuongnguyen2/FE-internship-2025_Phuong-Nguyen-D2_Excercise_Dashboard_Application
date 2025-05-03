@@ -1,0 +1,47 @@
+@use '../base/variables' as *;
+
+.section-todo {
+  box-shadow: $shadow-color-02;
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .todo-action {
+    font-size: $text-xs;
+    color: $neutral-color-40;
+    cursor: pointer;
+
+    .icon {
+      width: 11px;
+      height: 11px;
+
+      margin-right: 5px;
+    }
+  }
+}
+
+.todo-header,
+.task-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .title {
+    display: flex;
+    color: $orange-color;
+  }
+}
+
+.task-status-header {
+  .icon {
+    width: 19px;
+    height: 19px;
+  }
+}

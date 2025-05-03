@@ -1,24 +1,24 @@
-import { AuthRoutes } from '../constants/app-routes';
 import { PageRoute } from '../modules/custom-router-dom/router.interface';
 import Auth from './Auth';
 import Login from './containers/Login';
 import Register from './containers/Register';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
 
 const authRoutes: PageRoute[] = [
   {
-    path: AuthRoutes.BASE,
+    path: AppRoutes.AUTH,
     component: Auth,
     children: [
       {
         path: '',
-        redirect: AuthRoutes.LOGIN
+        redirect: AppRoutes.LOGIN
       },
       {
-        path: AuthRoutes.LOGIN,
+        path: AppRoutes.LOGIN,
         component: Login
       },
       {
-        path: AuthRoutes.REGISTER,
+        path: AppRoutes.REGISTER,
         component: Register
       }
     ]

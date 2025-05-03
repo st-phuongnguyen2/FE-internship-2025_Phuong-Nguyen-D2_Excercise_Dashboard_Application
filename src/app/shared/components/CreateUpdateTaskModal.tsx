@@ -1,21 +1,22 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormControlLabel, Modal, Radio, RadioGroup } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
+import { resetTaskForm } from '@src/app/redux-store/task-modal/task-modal-slice';
 import dayjs from 'dayjs';
+import { useContext } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { v4 } from 'uuid';
-import { setTaskForm } from '../../redux-store/task-modal/task-modal-slice';
-import { addTask, editTask } from '../../redux-store/tasks/tasks-slice';
 import { TaskFormTitle } from '../../utils/constants/task-form-title';
 import { TaskStatus } from '../../utils/constants/task-status';
 import { renderStatusDot } from '../../utils/render-task';
+import { AuthContext } from '../contexts/auth.context';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hook';
 import { Task } from '../models/Task';
 import {
   ITaskFormFields,
   taskFormSchema
 } from '../schema-validations/task-form';
+import { taskService } from '../services/tasks.service';
 import FormInput from './form/FormInput';
 
 const TASK_STATUS_RADIO = [
@@ -34,72 +35,78 @@ const TASK_STATUS_RADIO = [
 ];
 
 const CreateUpdateTaskModal = () => {
-  const { formTitle, isOpen, taskForm } = useAppSelector(
+  const { formTitle, isOpen, taskForm, onSuccess, taskId } = useAppSelector(
     (state) => state.taskForm
   );
-  const currentUser = useAppSelector((state) => state.auth.currentUser);
-  const { tasks, selectedTaskId } = useAppSelector((state) => state.tasks);
-
-  const selectedTask = tasks.find((item) => item.id === selectedTaskId);
-
-  const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    control
+    control,
+    reset
   } = useForm({
     resolver: yupResolver(taskFormSchema),
     values: taskForm,
     defaultValues: { status: TaskStatus.NOT_STARTED }
   });
 
+  const { user } = useContext(AuthContext);
+
+  const dispatch = useAppDispatch();
+
   function closeModal() {
-    dispatch(
-      setTaskForm({
-        isOpen: false,
-        taskForm: undefined
-      })
-    );
+    dispatch(resetTaskForm());
+    reset();
   }
 
-  const onSubmit: SubmitHandler<ITaskFormFields> = (data) => {
-    console.log('type:', typeof data.date);
-
+  const onSubmit: SubmitHandler<ITaskFormFields> = async (data) => {
     if (formTitle === TaskFormTitle.ADD) {
-      dispatch(
-        addTask(
-          new Task(
-            v4(),
-            currentUser!.email,
+      const newTask = new Task(
+        crypto.randomUUID(),
+        user!.email,
+        data.title,
+        data.date.toISOString(),
+        data.status,
+        data.description
+      );
+      try {
+        await taskService.createTask(newTask);
+        toast.success('Added task successfully');
+        onSuccess?.();
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
+      } finally {
+        closeModal();
+      }
+    } else if (formTitle === TaskFormTitle.UPDATE) {
+      if (taskId) {
+        try {
+          const updatedTask = new Task(
+            taskId,
+            user!.email,
             data.title,
             data.date.toISOString(),
             data.status,
             data.description
-          )
-        )
-      );
-      toast.success('Added task successfully');
-    } else if (formTitle === TaskFormTitle.UPDATE) {
-      if (selectedTask) {
-        dispatch(
-          editTask(
-            new Task(
-              selectedTask.id,
-              currentUser!.email,
-              data.title,
-              data.date.toISOString(),
-              data.status,
-              data.description
-            )
-          )
-        );
-        toast.success('Edited task successfully');
+          );
+          await taskService.updateTask({
+            task: updatedTask,
+            userEmail: user!.email
+          });
+          toast.success('Edited task successfully');
+          onSuccess?.();
+        } catch (err) {
+          if (err instanceof Error) {
+            toast.error(err.message);
+          }
+        } finally {
+          closeModal();
+        }
       }
     }
-
-    closeModal();
   };
 
   return (

@@ -1,12 +1,25 @@
-import React from 'react';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { JSX, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const isAuthenticated = (): boolean => {
-  // const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-  // return !!token;
-  return true;
+interface IPrivateRouteProps {
+  component: () => JSX.Element;
+}
+
+const PrivateRoute = ({ component: Component }: IPrivateRouteProps) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log('isAuthenticated:', isAuthenticated);
+
+  function render() {
+    return isAuthenticated ? (
+      <Component />
+    ) : (
+      <Navigate to={AppRoutes.LOGIN} replace />
+    );
+  }
+
+  return <>{render()}</>;
 };
 
-export const PrivateRoute = ({ component: Wrapped }) => {
-  return isAuthenticated() ? <Wrapped /> : <Navigate to="/auth/login" />;
-};
+export default PrivateRoute;

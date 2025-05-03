@@ -1,19 +1,16 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
+import FormInput from '@src/app/shared/components/form/FormInput';
+import { userService } from '@src/app/shared/services/user.service';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
-  useAppDispatch,
-  useAppSelector
-} from '../../../shared/hooks/redux-hook';
-import { User } from '../../../shared/models/User';
-import {
   IUserLoginFields,
   userLoginFormSchema
 } from '../../../shared/schema-validations/login-form';
-import { AppRoutes } from '../../../utils/constants/app-routes';
-import { login } from '../../../redux-store/auth/users-slice';
-import FormInput from '@src/app/shared/components/form/FormInput';
+import { useContext } from 'react';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
 
 const Login = () => {
   const {
@@ -23,30 +20,22 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(userLoginFormSchema)
   });
+  const { setUserSession } = useContext(AuthContext);
 
-  const users = useAppSelector((state) => state.users.users);
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<IUserLoginFields> = (data) => {
+  const onSubmit: SubmitHandler<IUserLoginFields> = async (data) => {
     if (data.email && data.password) {
-      const foundUser = users.find((item) => item.email === data.email);
+      try {
+        const res = await userService.loginUser(data);
 
-      if (!foundUser) {
-        toast.error("User with this email doesn't exist!");
-      } else if (foundUser.password !== data.password) {
-        toast.error('User credential is incorrect!');
-      } else {
-        const currentUser = new User(
-          foundUser.id,
-          foundUser.fullName,
-          foundUser.email,
-          foundUser.password
-        );
-
-        dispatch(login(currentUser));
+        setUserSession(res);
         toast.success('Logged in successfully!');
         navigate(AppRoutes.HOME);
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
       }
     }
   };

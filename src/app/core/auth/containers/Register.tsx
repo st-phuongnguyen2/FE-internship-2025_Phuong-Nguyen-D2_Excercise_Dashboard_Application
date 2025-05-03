@@ -1,20 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
+import { userService } from '@src/app/shared/services/user.service';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { v4 } from 'uuid';
-import { addUser } from '../../../redux-store/users/users-slice';
 import FormInput from '../../../shared/components/form/FormInput';
-import {
-  useAppDispatch,
-  useAppSelector
-} from '../../../shared/hooks/redux-hook';
 import { User } from '../../../shared/models/User';
 import {
   IUserRegisterFields,
   userRegisterFormSchema
 } from '../../../shared/schema-validations/register-form';
-import { AppRoutes } from '../../../utils/constants/app-routes';
 
 const Register = () => {
   const {
@@ -27,24 +22,23 @@ const Register = () => {
   });
   const navigate = useNavigate();
 
-  const users = useAppSelector((state) => state.users.users);
-  const dispatch = useAppDispatch();
-
-  const onSubmit: SubmitHandler<IUserRegisterFields> = (data) => {
+  const onSubmit: SubmitHandler<IUserRegisterFields> = async (data) => {
     if (data.password === data.confirmPassword) {
-      const foundUser = users.find((item) => item.email === data.email);
-      if (foundUser) {
-        toast.error('User with this email already exists!');
-      } else {
-        const newUser = new User(
-          v4(),
-          data.fullName,
-          data.email,
-          data.password
-        );
-        dispatch(addUser(newUser));
+      const newUser = new User(
+        crypto.randomUUID(),
+        data.fullName,
+        data.email,
+        data.password
+      );
+      try {
+        await userService.registerUser(newUser);
+
         toast.success('Registered user successfully!');
         navigate(AppRoutes.LOGIN);
+      } catch (err) {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
       }
     } else {
       setError('confirmPassword', {

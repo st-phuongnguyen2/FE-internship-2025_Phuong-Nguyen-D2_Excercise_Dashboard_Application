@@ -1,28 +1,27 @@
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { taskService } from '@src/app/shared/services/tasks.service';
 import dayjs from 'dayjs';
+import { useContext, useEffect, useState } from 'react';
 import grayDotIcon from '../../../../assets/icons/gray-dot-icon.svg';
 import handWaveIcon from '../../../../assets/icons/hand-wave-icon.svg';
 import notebookIcon from '../../../../assets/icons/notebook-icon.svg';
 import notebookTickIcon from '../../../../assets/icons/notebook-tick-icon.svg';
 import plusIcon from '../../../../assets/icons/plus-icon.svg';
 import { setTaskForm } from '../../../redux-store/task-modal/task-modal-slice';
-import CreateUpdateTaskModal from '../../../shared/components/CreateUpdateTaskModal';
 import TaskList from '../../../shared/components/TaskList';
-import {
-  useAppDispatch,
-  useAppSelector
-} from '../../../shared/hooks/redux-hook';
+import { useAppDispatch } from '../../../shared/hooks/redux-hook';
 import { Task } from '../../../shared/models/Task';
 import { TaskFormTitle } from '../../../utils/constants/task-form-title';
 import { TaskStatus } from '../../../utils/constants/task-status';
 import { renderStatusDot } from '../../../utils/render-task';
 import CircularProgressWithLabel from './CircularProgressWithLabel';
+import { useNavigate } from 'react-router-dom';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
 
 const Dashboard = () => {
-  const currentUser = useAppSelector((state) => state.auth.currentUser);
-  const tasks = useAppSelector((state) => state.tasks.tasks);
-  const tasksOfCurrentUser = tasks.filter(
-    (task) => task.userEmail === currentUser?.email
-  );
+  const { user } = useContext(AuthContext);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
@@ -36,6 +35,16 @@ const Dashboard = () => {
     }, {} as any);
   }
 
+  async function fetchTasks() {
+    const data = await taskService.getTasks({
+      userEmail: user!.email,
+      limit: 5,
+      page: 1
+    });
+
+    setTasks(data.list);
+  }
+
   function handleOpenAddTaskModal() {
     dispatch(
       setTaskForm({
@@ -46,7 +55,8 @@ const Dashboard = () => {
           description: '',
           date: new Date(),
           status: TaskStatus.NOT_STARTED
-        }
+        },
+        onSuccess: () => fetchTasks()
       })
     );
   }
@@ -56,13 +66,7 @@ const Dashboard = () => {
   }
 
   function renderLatestTasks() {
-    const latestTasks = tasksOfCurrentUser
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 5);
-
-    console.log('groupByDate(latestTasks):', groupByDate(latestTasks));
-    const groups = Object.values(groupByDate(latestTasks));
-    console.log('groups:', groups);
+    const groups = Object.values(groupByDate(tasks));
 
     return groups.map((group: any) => {
       return (
@@ -87,7 +91,12 @@ const Dashboard = () => {
               )}
             </h2>
           </li>
-          <TaskList taskList={group} />
+          <TaskList
+            taskList={group}
+            onTaskClick={(item) => {
+              navigate(`${AppRoutes.MY_TASKS}/${item.id}`);
+            }}
+          />
         </ul>
       );
     });
@@ -98,7 +107,7 @@ const Dashboard = () => {
     let notStartedTaskSum = 0;
     let completedTaskSum = 0;
 
-    tasksOfCurrentUser.forEach((task) => {
+    tasks.forEach((task) => {
       if (task.status === TaskStatus.NOT_STARTED) {
         notStartedTaskSum += 1;
       } else if (task.status === TaskStatus.IN_PROGRESS) {
@@ -106,7 +115,7 @@ const Dashboard = () => {
       } else completedTaskSum += 1;
     });
 
-    console.log('tasksOfCurrentUser', tasksOfCurrentUser);
+    console.log('tasks', tasks);
 
     return (
       <>
@@ -123,9 +132,7 @@ const Dashboard = () => {
         <div className="progress-chart">
           <div className="progress-group">
             <CircularProgressWithLabel
-              value={Math.ceil(
-                (completedTaskSum / tasksOfCurrentUser.length) * 100
-              )}
+              value={Math.ceil((completedTaskSum / tasks.length) * 100) || 0}
               size={140}
               className="completed-status"
             />
@@ -140,9 +147,7 @@ const Dashboard = () => {
           </div>
           <div className="progress-group">
             <CircularProgressWithLabel
-              value={Math.ceil(
-                (inprogressTaskSum / tasksOfCurrentUser.length) * 100
-              )}
+              value={Math.ceil((inprogressTaskSum / tasks.length) * 100) || 0}
               size={140}
               className="inprogress-status"
             />
@@ -157,9 +162,7 @@ const Dashboard = () => {
           </div>
           <div className="progress-group">
             <CircularProgressWithLabel
-              value={Math.ceil(
-                (notStartedTaskSum / tasksOfCurrentUser.length) * 100
-              )}
+              value={Math.ceil((notStartedTaskSum / tasks.length) * 100) || 0}
               size={140}
               className="not-started-status"
             />
@@ -192,19 +195,27 @@ const Dashboard = () => {
         </div>
 
         <TaskList
-          taskList={tasksOfCurrentUser.filter(
+          taskList={tasks.filter(
             (item) => item.status === TaskStatus.COMPLETED
           )}
+          onTaskClick={(item) => {
+            navigate(`${AppRoutes.MY_TASKS}/${item.id}`);
+          }}
         />
       </>
     );
   }
 
+  useEffect(() => {
+    if (user) {
+      fetchTasks();
+    }
+  }, [user]);
+
   return (
     <>
-      <CreateUpdateTaskModal />
       <h2 className="content-header">
-        Welcome back, {currentUser?.fullName}
+        Welcome back, {user?.fullName}
         <img src={handWaveIcon} alt="hand-wave-icon" className="icon" />
       </h2>
       <div className="content-body">

@@ -1,0 +1,13 @@
+@use '../base/variables' as *;
+
+.not-started-status {
+  color: $red-color-40;
+}
+
+.inprogress-status {
+  color: $blue-color-100;
+}
+
+.completed-status {
+  color: $green-color-60;
+}

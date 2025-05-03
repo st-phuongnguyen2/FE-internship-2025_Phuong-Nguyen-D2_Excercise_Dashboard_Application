@@ -1,9 +1,6 @@
-import { immerable } from 'immer';
 import { TaskStatus } from '../../utils/constants/task-status';
 
 export class Task {
-  static [immerable] = true;
-
   constructor(
     public id: string,
     public userEmail: string,
