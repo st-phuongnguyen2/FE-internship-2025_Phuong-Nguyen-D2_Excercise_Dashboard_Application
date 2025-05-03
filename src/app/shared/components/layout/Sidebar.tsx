@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import dashboardIcon from '../../../../assets/icons/dashboard-icon.svg';
 import logoutIcon from '../../../../assets/icons/logout-icon.svg';
-import { SidebarTabs } from '../../../utils/constants/sidebar-tabs';
 import { AuthContext } from '../../contexts/auth.context';
 import MyTaskIcon from '../MyTaskIcon';
 import { AppRoutes } from '@src/app/core/constants/app-routes';
+import { SidebarTabs } from '@src/app/core/constants/sidebar-tabs';
 
 const Sidebar = () => {
   const location = useLocation();

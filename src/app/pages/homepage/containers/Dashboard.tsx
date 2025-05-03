@@ -11,12 +11,12 @@ import { setTaskForm } from '../../../redux-store/task-modal/task-modal-slice';
 import TaskList from '../../../shared/components/TaskList';
 import { useAppDispatch } from '../../../shared/hooks/redux-hook';
 import { Task } from '../../../shared/models/Task';
-import { TaskFormTitle } from '../../../utils/constants/task-form-title';
-import { TaskStatus } from '../../../utils/constants/task-status';
-import { renderStatusDot } from '../../../utils/render-task';
+import { renderStatusDot } from '../../../core/utils/render-task';
 import CircularProgressWithLabel from './CircularProgressWithLabel';
 import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '@src/app/core/constants/app-routes';
+import { TaskStatus } from '@src/app/core/constants/task-status';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);

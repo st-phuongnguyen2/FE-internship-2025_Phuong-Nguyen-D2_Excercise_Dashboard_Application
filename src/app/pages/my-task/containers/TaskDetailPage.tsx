@@ -4,11 +4,11 @@ import { AuthContext } from '@src/app/shared/contexts/auth.context';
 import { useAppDispatch } from '@src/app/shared/hooks/redux-hook';
 import { Task } from '@src/app/shared/models/Task';
 import { taskService } from '@src/app/shared/services/tasks.service';
-import { TaskFormTitle } from '@src/app/utils/constants/task-form-title';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import TaskDetail from '../../../shared/components/TaskDetail';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 const TaskDetailPage = () => {
   const params = useParams<{ id: string }>();

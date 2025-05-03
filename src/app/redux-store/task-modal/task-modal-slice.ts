@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITaskFormFields } from '../../shared/schema-validations/task-form';
-import { TaskFormTitle } from '../../utils/constants/task-form-title';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 interface ITaskModalState {
   isOpen: boolean;
