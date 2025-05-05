@@ -1,5 +1,6 @@
 import { AppRoutes } from '@src/app/core/constants/app-routes';
 import { AuthContext } from '@src/app/shared/contexts/auth.context';
+
 import { JSX, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
@@ -9,7 +10,6 @@ interface IPrivateRouteProps {
 
 const PrivateRoute = ({ component: Component }: IPrivateRouteProps) => {
   const { isAuthenticated } = useContext(AuthContext);
-  console.log('isAuthenticated:', isAuthenticated);
 
   function render() {
     return isAuthenticated ? (

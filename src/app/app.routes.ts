@@ -1,15 +1,17 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import App from './App';
-import authRoutes from './core/auth/auth.routes';
-import { renderChildren } from './core/modules/custom-router-dom/RouterOutlet';
-import { homepageRoutes } from './pages/homepage/homepage.routes';
-import { taskRoutes } from './pages/my-task/my-task.routes';
 
-const route = [...authRoutes, ...homepageRoutes, ...taskRoutes];
+import authRoutes from './core/auth/auth.routes';
+import { AppRoutes } from './core/constants/app-routes';
+import { renderChildren } from './core/modules/custom-router-dom/RouterOutlet';
+import { pageRoutes } from './pages/page.routes';
+
+const App = lazy(() => import('./App'));
+const route = [...authRoutes, ...pageRoutes];
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: AppRoutes.HOME,
     Component: App,
     children: renderChildren(route)
   }

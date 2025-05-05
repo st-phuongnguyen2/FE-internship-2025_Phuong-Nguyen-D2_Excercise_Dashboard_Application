@@ -1,29 +1,32 @@
 import { Pagination } from '@mui/material';
-import { TaskPaginationOptions } from '@src/app/core/types/pagination-options';
-import { AuthContext } from '@src/app/shared/contexts/auth.context';
-import { taskService } from '@src/app/shared/services/tasks.service';
-import { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import notebookIcon from '../../../../assets/icons/notebook-icon.svg';
-import plusIcon from '../../../../assets/icons/plus-icon.svg';
-import { setTaskForm } from '../../../redux-store/task-modal/task-modal-slice';
-import FormInput from '../../../shared/components/form/FormInput';
-import TaskDetail from '../../../shared/components/TaskDetail';
-import TaskList from '../../../shared/components/TaskList';
-import { useAppDispatch } from '../../../shared/hooks/redux-hook';
-import { Task } from '../../../shared/models/Task';
 import { ITEMS_PER_PAGE } from '@src/app/core/constants/pagination';
 import {
   SORT_ORDER_OPTIONS,
   SortOrder
 } from '@src/app/core/constants/sort-order';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+import { TaskSortField } from '@src/app/core/constants/task-sort-field';
 import {
   TASK_STATUS_OPTIONS,
   TaskStatus
 } from '@src/app/core/constants/task-status';
-import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+import { TaskPaginationOptions } from '@src/app/core/types/pagination-options';
+import FormInput from '@src/app/shared/components/form/FormInput';
+import TaskDetail from '@src/app/shared/components/TaskDetail';
+import TaskList from '@src/app/shared/components/TaskList';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { useAppDispatch } from '@src/app/shared/hooks/redux-hook';
+import { Task } from '@src/app/shared/models/Task';
+import { taskService } from '@src/app/shared/services/tasks.service';
+import { setTaskForm } from '@src/app/store/task-modal/task-modal-slice';
 
-const MyTask = () => {
+import { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import notebookIcon from '/icons/notebook-icon.svg';
+import plusIcon from '/icons/plus-icon.svg';
+
+const MyTasksPage = () => {
   const dispatch = useAppDispatch();
   const { user } = useContext(AuthContext);
 
@@ -33,7 +36,7 @@ const MyTask = () => {
       page: 1,
       limit: ITEMS_PER_PAGE,
       totalPages: 0,
-      sortBy: 'date',
+      sortBy: TaskSortField.DATE,
       sortOrder: SortOrder.LATEST
     }
   });
@@ -261,4 +264,4 @@ const MyTask = () => {
   );
 };
 
-export default MyTask;
+export default MyTasksPage;

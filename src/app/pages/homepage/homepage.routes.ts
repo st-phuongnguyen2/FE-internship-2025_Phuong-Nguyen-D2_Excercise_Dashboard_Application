@@ -1,7 +1,10 @@
 import { AppRoutes } from '@src/app/core/constants/app-routes';
 import { PageRoute } from '@src/app/core/modules/custom-router-dom/router.interface';
-import HomePage from './HomePage';
-import Dashboard from './containers/Dashboard';
+
+import { lazy } from 'react';
+
+const HomePage = lazy(() => import('./HomePage'));
+const DashboardPage = lazy(() => import('./containers/DashboardPage'));
 
 export const homepageRoutes: PageRoute[] = [
   {
@@ -11,7 +14,7 @@ export const homepageRoutes: PageRoute[] = [
     children: [
       {
         path: AppRoutes.HOME,
-        component: Dashboard
+        component: DashboardPage
       }
     ]
   }

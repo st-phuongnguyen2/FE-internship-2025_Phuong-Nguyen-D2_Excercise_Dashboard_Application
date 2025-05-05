@@ -1,8 +1,8 @@
-import { PageRoute } from '../modules/custom-router-dom/router.interface';
+import { AppRoutes } from '@src/app/core/constants/app-routes';
+import { PageRoute } from '@src/app/core/modules/custom-router-dom/router.interface';
 import Auth from './Auth';
 import Login from './containers/Login';
 import Register from './containers/Register';
-import { AppRoutes } from '@src/app/core/constants/app-routes';
 
 const authRoutes: PageRoute[] = [
   {

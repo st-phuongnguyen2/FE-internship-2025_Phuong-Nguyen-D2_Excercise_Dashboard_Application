@@ -1,15 +1,17 @@
+import { AppRoutes } from '@src/app/core/constants/app-routes';
 import { StorageKeys } from '@src/app/core/constants/local-storage-keys';
 import { LocalStorage } from '@src/app/core/utils/local-storage';
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import { User } from '../models/User';
-import { IUserLoginFields } from '../schema-validations/login-form';
-import { userService } from '../services/user.service';
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hook';
-import { setLoading } from '@src/app/redux-store/loading/loading-slice';
-import { Navigate, useLocation } from 'react-router-dom';
-import { AppRoutes } from '@src/app/core/constants/app-routes';
-import { toast } from 'react-toastify';
 import { waitAsync } from '@src/app/core/utils/wait';
+import { setLoading } from '@src/app/store/loading/loading-slice';
+
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import { useAppDispatch, useAppSelector } from '@src/app/shared/hooks/redux-hook';
+import { User } from '@src/app/shared/models/User';
+import { IUserLoginFields } from '@src/app/shared/schema-validations/login-form';
+import { userService } from '@src/app/shared/services/user.service';
 
 export interface AuthContextType {
   user: User | null;

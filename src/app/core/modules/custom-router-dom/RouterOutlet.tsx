@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+
 import { PageRoute } from './router.interface';
 import PrivateRoute from './PrivateRoute';
 

@@ -1,16 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AppRoutes } from '@src/app/core/constants/app-routes';
 import FormInput from '@src/app/shared/components/form/FormInput';
-import { userService } from '@src/app/shared/services/user.service';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
 import {
   IUserLoginFields,
   userLoginFormSchema
-} from '../../../shared/schema-validations/login-form';
+} from '@src/app/shared/schema-validations/login-form';
+import { userService } from '@src/app/shared/services/user.service';
+
 import { useContext } from 'react';
-import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const {

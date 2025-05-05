@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import dashboardIcon from '../../../../assets/icons/dashboard-icon.svg';
-import logoutIcon from '../../../../assets/icons/logout-icon.svg';
-import { AuthContext } from '../../contexts/auth.context';
-import MyTaskIcon from '../MyTaskIcon';
+
 import { AppRoutes } from '@src/app/core/constants/app-routes';
 import { SidebarTabs } from '@src/app/core/constants/sidebar-tabs';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import MyTaskIcon from '../MyTaskIcon';
+
+import dashboardIcon from '/icons/dashboard-icon.svg';
+import logoutIcon from '/icons/logout-icon.svg';
 
 const Sidebar = () => {
   const location = useLocation();

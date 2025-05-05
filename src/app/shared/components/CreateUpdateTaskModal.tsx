@@ -1,23 +1,24 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormControlLabel, Modal, Radio, RadioGroup } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
-import { resetTaskForm } from '@src/app/redux-store/task-modal/task-modal-slice';
+
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+import { TaskStatus } from '@src/app/core/constants/task-status';
+import { Task } from '@src/app/shared/models/Task';
+import { resetTaskForm } from '@src/app/store/task-modal/task-modal-slice';
+
 import dayjs from 'dayjs';
+
 import { useContext } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { renderStatusDot } from '../../core/utils/render-task';
-import { AuthContext } from '../contexts/auth.context';
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hook';
-import { Task } from '../models/Task';
-import {
-  ITaskFormFields,
-  taskFormSchema
-} from '../schema-validations/task-form';
-import { taskService } from '../services/tasks.service';
+
+import { renderStatusDot } from '@src/app/core/helpers/render-task';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { useAppDispatch, useAppSelector } from '@src/app/shared/hooks/redux-hook';
+import { ITaskFormFields, taskFormSchema } from '@src/app/shared/schema-validations/task-form';
+import { taskService } from '@src/app/shared/services/tasks.service';
 import FormInput from './form/FormInput';
-import { TaskStatus } from '@src/app/core/constants/task-status';
-import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
 
 const TASK_STATUS_RADIO = [
   {

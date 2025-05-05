@@ -1,4 +1,4 @@
-import { TaskStatus } from '../../utils/constants/task-status';
+import { TaskStatus } from '@src/app/core/constants/task-status';
 
 export class Task {
   constructor(
@@ -10,3 +10,4 @@ export class Task {
     public description: string
   ) {}
 }
+

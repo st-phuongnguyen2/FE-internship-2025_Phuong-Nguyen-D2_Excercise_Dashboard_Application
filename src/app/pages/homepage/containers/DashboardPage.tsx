@@ -1,22 +1,25 @@
-import { AuthContext } from '@src/app/shared/contexts/auth.context';
-import { taskService } from '@src/app/shared/services/tasks.service';
-import dayjs from 'dayjs';
-import { useContext, useEffect, useState } from 'react';
-import grayDotIcon from '../../../../assets/icons/gray-dot-icon.svg';
-import handWaveIcon from '../../../../assets/icons/hand-wave-icon.svg';
-import notebookIcon from '../../../../assets/icons/notebook-icon.svg';
-import notebookTickIcon from '../../../../assets/icons/notebook-tick-icon.svg';
-import plusIcon from '../../../../assets/icons/plus-icon.svg';
-import { setTaskForm } from '../../../redux-store/task-modal/task-modal-slice';
-import TaskList from '../../../shared/components/TaskList';
-import { useAppDispatch } from '../../../shared/hooks/redux-hook';
-import { Task } from '../../../shared/models/Task';
-import { renderStatusDot } from '../../../core/utils/render-task';
-import CircularProgressWithLabel from './CircularProgressWithLabel';
-import { useNavigate } from 'react-router-dom';
 import { AppRoutes } from '@src/app/core/constants/app-routes';
-import { TaskStatus } from '@src/app/core/constants/task-status';
 import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+import { TaskStatus } from '@src/app/core/constants/task-status';
+import { renderStatusDot } from '@src/app/core/helpers/render-task';
+import TaskList from '@src/app/shared/components/TaskList';
+import { AuthContext } from '@src/app/shared/contexts/auth.context';
+import { useAppDispatch } from '@src/app/shared/hooks/redux-hook';
+import { Task } from '@src/app/shared/models/Task';
+import { taskService } from '@src/app/shared/services/tasks.service';
+import { setTaskForm } from '@src/app/store/task-modal/task-modal-slice';
+import CircularProgressWithLabel from '../components/CircularProgressWithLabel';
+
+import dayjs from 'dayjs';
+
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import grayDotIcon from '/icons/gray-dot-icon.svg';
+import handWaveIcon from '/icons/hand-wave-icon.svg';
+import notebookIcon from '/icons/notebook-icon.svg';
+import notebookTickIcon from '/icons/notebook-tick-icon.svg';
+import plusIcon from '/icons/plus-icon.svg';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -114,8 +117,6 @@ const Dashboard = () => {
         inprogressTaskSum += 1;
       } else completedTaskSum += 1;
     });
-
-    console.log('tasks', tasks);
 
     return (
       <>

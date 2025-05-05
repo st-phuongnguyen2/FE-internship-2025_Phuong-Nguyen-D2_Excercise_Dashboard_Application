@@ -1,5 +1,5 @@
-import myTaskIcon from '../../../assets/icons/my-task-icon.svg';
-import tickIcon from '../../../assets/icons/tick-icon.svg';
+import myTaskIcon from '/icons/my-task-icon.svg';
+import tickIcon from '/icons/tick-icon.svg';
 
 const MyTaskIcon = () => {
   return (

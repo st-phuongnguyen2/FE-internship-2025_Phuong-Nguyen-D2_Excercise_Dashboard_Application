@@ -1,14 +1,16 @@
 import { AppRoutes } from '@src/app/core/constants/app-routes';
-import { setTaskForm } from '@src/app/redux-store/task-modal/task-modal-slice';
+import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+import TaskDetail from '@src/app/shared/components/TaskDetail';
 import { AuthContext } from '@src/app/shared/contexts/auth.context';
 import { useAppDispatch } from '@src/app/shared/hooks/redux-hook';
 import { Task } from '@src/app/shared/models/Task';
 import { taskService } from '@src/app/shared/services/tasks.service';
+import { setTaskForm } from '@src/app/store/task-modal/task-modal-slice';
+
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import TaskDetail from '../../../shared/components/TaskDetail';
-import { TaskFormTitle } from '@src/app/core/constants/task-form-title';
+
 
 const TaskDetailPage = () => {
   const params = useParams<{ id: string }>();

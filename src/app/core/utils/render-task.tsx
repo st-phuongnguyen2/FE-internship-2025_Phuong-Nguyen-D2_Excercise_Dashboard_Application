@@ -1,10 +1,11 @@
 import { TaskStatus } from '@src/app/core/constants/task-status';
-import blueBorderIcon from '../../../assets/icons/blue-border-icon.svg';
-import blueDotIcon from '../../../assets/icons/blue-dot-icon.svg';
-import greenBorderIcon from '../../../assets/icons/green-border-icon.svg';
-import greenDotIcon from '../../../assets/icons/green-dot-icon.svg';
-import redBorderIcon from '../../../assets/icons/red-border-icon.svg';
-import redDotIcon from '../../../assets/icons/red-dot-icon.svg';
+
+import blueBorderIcon from '/icons/blue-border-icon.svg';
+import blueDotIcon from '/icons/blue-dot-icon.svg';
+import greenBorderIcon from '/icons/green-border-icon.svg';
+import greenDotIcon from '/icons/green-dot-icon.svg';
+import redBorderIcon from '/icons/red-border-icon.svg';
+import redDotIcon from '/icons/red-dot-icon.svg';
 
 export function renderStatusBorderIcon(status: TaskStatus) {
   {

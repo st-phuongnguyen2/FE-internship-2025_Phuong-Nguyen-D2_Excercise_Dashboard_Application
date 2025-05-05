@@ -1,14 +1,18 @@
 import { AppRoutes } from '@src/app/core/constants/app-routes';
 import { PageRoute } from '@src/app/core/modules/custom-router-dom/router.interface';
-import TaskPage from './MyTaskPage';
-import MyTasks from './containers/MyTasks';
+
+import { lazy } from 'react';
+
+import MyTasks from './containers/MyTasksPage';
 import TaskDetailPage from './containers/TaskDetailPage';
+
+const MyTaskPage = lazy(() => import('./MyTaskPage'));
 
 export const taskRoutes: PageRoute[] = [
   {
     isProtected: true,
     path: AppRoutes.MY_TASKS,
-    component: TaskPage,
+    component: MyTaskPage,
     children: [
       {
         path: '',

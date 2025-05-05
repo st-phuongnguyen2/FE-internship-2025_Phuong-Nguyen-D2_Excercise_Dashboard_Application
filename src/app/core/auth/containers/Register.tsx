@@ -1,15 +1,16 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AppRoutes } from '@src/app/core/constants/app-routes';
-import { userService } from '@src/app/shared/services/user.service';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import FormInput from '../../../shared/components/form/FormInput';
-import { User } from '../../../shared/models/User';
+import FormInput from '@src/app/shared/components/form/FormInput';
+import { User } from '@src/app/shared/models/User';
 import {
   IUserRegisterFields,
   userRegisterFormSchema
-} from '../../../shared/schema-validations/register-form';
+} from '@src/app/shared/schema-validations/register-form';
+import { userService } from '@src/app/shared/services/user.service';
+
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const {

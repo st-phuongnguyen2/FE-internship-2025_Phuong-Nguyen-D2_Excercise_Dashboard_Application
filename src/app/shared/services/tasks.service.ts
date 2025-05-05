@@ -1,16 +1,17 @@
 import { StorageKeys } from '@src/app/core/constants/local-storage-keys';
 import { SortOrder } from '@src/app/core/constants/sort-order';
+import { TaskSortField } from '@src/app/core/constants/task-sort-field';
 import { TaskPaginationOptions } from '@src/app/core/types/pagination-options';
 import { LocalStorage } from '@src/app/core/utils/local-storage';
 import { paginate } from '@src/app/core/utils/paginate';
-import { Task } from '../models/Task';
+import { Task } from '@src/app/shared/models/Task';
 
 class TaskService {
   async getTasks({
     page = 1,
     limit,
     userEmail,
-    sortBy = 'date',
+    sortBy = TaskSortField.DATE,
     sortOrder = SortOrder.LATEST,
     filter
   }: TaskPaginationOptions & { userEmail: string }) {
@@ -35,7 +36,7 @@ class TaskService {
         }
       }
 
-      if (sortBy === 'date') {
+      if (sortBy === TaskSortField.DATE) {
         if (sortOrder === SortOrder.OLDEST) {
           list = list.sort(
             (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
@@ -116,7 +117,6 @@ class TaskService {
 
   async updateTask({ task, userEmail }: { task: Task; userEmail: string }) {
     const list = LocalStorage.get<Task[]>(StorageKeys.TASKS);
-    console.log('ABC');
     if (Array.isArray(list) && list.length > 0) {
       const foundIndex = list.findIndex(
         (item) => item.userEmail === userEmail && item.id === task.id

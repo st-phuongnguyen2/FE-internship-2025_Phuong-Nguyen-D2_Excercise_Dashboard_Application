@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import { loadingReducer } from './loading/loading-slice';
 import { createUpdateTaskReducer } from './task-modal/task-modal-slice';
 

@@ -1,14 +1,14 @@
 import CreateUpdateTaskModal from '@src/app/shared/components/CreateUpdateTaskModal';
-import BasicLayout from '@src/app/shared/components/layout/BasicLayout';
+
 import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
   return (
     <>
       <CreateUpdateTaskModal />
-      <BasicLayout className="common-page home-page">
+      <div className="home-page">
         <Outlet />
-      </BasicLayout>
+      </div>
     </>
   );
 };

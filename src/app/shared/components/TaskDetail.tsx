@@ -1,9 +1,12 @@
 import dayjs from 'dayjs';
+
 import { JSX } from 'react';
-import deleteIcon from '../../../assets/icons/delete-icon.svg';
-import editIcon from '../../../assets/icons/edit-icon.svg';
-import { renderStatusName } from '../../core/utils/render-task';
-import { Task } from '../models/Task';
+
+import deleteIcon from '/icons/delete-icon.svg';
+import editIcon from '/icons/edit-icon.svg';
+
+import { Task } from '@src/app/shared/models/Task';
+import { renderStatusName } from '@src/app/core/utils/render-task';
 
 interface ITaskDetail {
   task?: Task;

@@ -1,9 +1,8 @@
 import dayjs from 'dayjs';
-import {
-  renderStatusBorderIcon,
-  renderStatusName
-} from '../../core/utils/render-task';
-import { Task } from '../models/Task';
+
+import { renderStatusBorderIcon, renderStatusName } from '@src/app/core/utils/render-task';
+import { Task } from '@src/app/shared/models/Task';
+
 import EllipsisTooltip from './EllipsisTooltip';
 
 interface ITaskListProps {
