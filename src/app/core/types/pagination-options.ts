@@ -1,5 +1,5 @@
-import { SortOrder } from '@src/app/utils/constants/sort-order';
-import { TaskStatus } from '@src/app/utils/constants/task-status';
+import { SortOrder } from '@src/app/core/constants/sort-order';
+import { TaskStatus } from '@src/app/core/constants/task-status';
 
 export interface PaginationOptions {
   page?: number;
